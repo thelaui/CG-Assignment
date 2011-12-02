@@ -13,6 +13,7 @@
 # include "include/AnimatedValue.hpp"
 
 struct ParticleTemplate;
+class  CollisionSphere;
 
 ////////////////////////////////////////////////////////////////////
 ///
@@ -22,7 +23,10 @@ class Particle {
     public:
         Particle(ParticleTemplate const& settings,
                  gloost::Vector3 const& from,
-                 gloost::Vector3 const& direction);
+                 gloost::Vector3 const& direction,
+                 bool collidable = false);
+
+        ~Particle();
 
         void update(double frameTime);
 
@@ -43,6 +47,7 @@ class Particle {
         AnimatedValue y_;
         AnimatedValue z_;
         float life_;
+        CollisionSphere* collisionSphere_;
 };
 
 # endif //PARTICLE_HPP

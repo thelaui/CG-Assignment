@@ -1,8 +1,9 @@
 # include "include/Particle.hpp"
 
 # include "include/Emitter.hpp"
+# include "include/CollisionSphere.hpp"
 
-Particle::Particle(ParticleTemplate const& settings, gloost::Vector3 const& from, gloost::Vector3 const& direction):
+Particle::Particle(ParticleTemplate const& settings, gloost::Vector3 const& from, gloost::Vector3 const& direction, bool collidable):
     a_(settings.a),
     r_(settings.r),
     g_(settings.g),
@@ -11,7 +12,17 @@ Particle::Particle(ParticleTemplate const& settings, gloost::Vector3 const& from
     x_(settings.movementInterpolation, from[0], from[0] + direction[0], settings.lifeTime, settings.movementMultiplier),
     y_(settings.movementInterpolation, from[1], from[1] + direction[1], settings.lifeTime, settings.movementMultiplier),
     z_(settings.movementInterpolation, from[2], from[2] + direction[2], settings.lifeTime, settings.movementMultiplier),
-    life_(settings.lifeTime) {}
+    life_(settings.lifeTime),
+    collisionSphere_(NULL) {
+
+    if (collidable)
+        collisionSphere_ = new CollisionSphere(from, 0.001f, false);
+}
+
+Particle::~Particle() {
+    if (collisionSphere_)
+        delete collisionSphere_;
+}
 
 void Particle::update(double frameTime) {
     a_.update(frameTime);
@@ -23,6 +34,12 @@ void Particle::update(double frameTime) {
     g_.update(frameTime);
     b_.update(frameTime);
     life_ -= frameTime;
+
+    if (collisionSphere_ ) {
+        if (collisionSphere_->getCollisionCount() == 0)
+            collisionSphere_->setPosition(getPosition());
+        else life_ = 0.f;
+    }
 }
 
 gloost::Vector3 Particle::getPosition() const {

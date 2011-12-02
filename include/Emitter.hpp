@@ -9,7 +9,7 @@
 # define EMITTER_HPP
 
 # include "include/SpaceObject.hpp"
-# include "include/Particle.hpp"
+# include "include/AnimatedValue.hpp"
 
 # include <list>
 
@@ -24,7 +24,10 @@ struct ParticleTemplate {
     float lifeTime;
     Texture* texture;
     AnimatedValue rate;
+    bool colliding;
 };
+
+class Particle;
 
 ////////////////////////////////////////////////////////////////////
 ///
@@ -46,7 +49,7 @@ class Emitter: public SpaceObject {
         void setRate(double rate, double time);
 
     private:
-        mutable std::list<Particle> particles_;
+        mutable std::list<Particle*> particles_;
 
         gloost::Vector3 position_, lastFramePosition_;
         gloost::Vector3 direction_, lastFrameDirection_;

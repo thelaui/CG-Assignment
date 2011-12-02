@@ -2,6 +2,7 @@
 
 # include "include/SpaceScene.hpp"
 # include "include/Texture.hpp"
+# include "include/Particle.hpp"
 
 # include <ObjLoader.h>
 # include <Mesh.h>
@@ -49,12 +50,12 @@ Emitter::~Emitter() {
 
 void Emitter::update(double frameTime) {
 
-    for(std::list<Particle>::iterator it = particles_.begin(); it != particles_.end(); ++it) {
-        if (it->isDead()) {
+    for(std::list<Particle*>::iterator it = particles_.begin(); it != particles_.end(); ++it) {
+        if ((*it)->isDead()) {
             it = particles_.erase(it);
             --it;
         }
-        else it->update(frameTime);
+        else (*it)->update(frameTime);
     }
 
     spawnTimer_ -= frameTime;
@@ -66,8 +67,8 @@ void Emitter::update(double frameTime) {
         gloost::Vector3 dirStep(direction_ - lastFrameDirection_);
 
         for (int i(0); i<spawnAmount; ++i) {
-            Particle newPart = Particle(settings_, position_ - 1.0*i/spawnAmount*posStep, direction_ - 1.0*i/spawnAmount*dirStep);
-            newPart.update(frameTime*i/spawnAmount);
+            Particle* newPart = new Particle(settings_, position_ - 1.0*i/spawnAmount*posStep, direction_ - 1.0*i/spawnAmount*dirStep, settings_.colliding);
+            newPart->update(frameTime*i/spawnAmount);
             particles_.push_back(newPart);
         }
 
@@ -93,18 +94,18 @@ void Emitter::draw() const {
     std::vector<float> vertices(8*particles_.size());
     int index(0);
 
-    for(std::list<Particle>::iterator it = particles_.begin(); it != particles_.end(); ++it) {
-        gloost::Vector3 pos(it->getPosition());
-        gloost::Vector3 col(it->getColor());
+    for(std::list<Particle*>::iterator it = particles_.begin(); it != particles_.end(); ++it) {
+        gloost::Vector3 pos((*it)->getPosition());
+        gloost::Vector3 col((*it)->getColor());
 
         vertices[index*8+0] = pos[0];
         vertices[index*8+1] = pos[1];
         vertices[index*8+2] = pos[2];
-        vertices[index*8+3] = it->getSize();
+        vertices[index*8+3] = (*it)->getSize();
         vertices[index*8+4] = col[0];
         vertices[index*8+5] = col[1];
         vertices[index*8+6] = col[2];
-        vertices[index*8+7] = it->getAlpha();
+        vertices[index*8+7] = (*it)->getAlpha();
         ++index;
     }
 

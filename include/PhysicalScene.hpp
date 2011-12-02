@@ -12,6 +12,7 @@ class PhysicalScene : public KnownObject<PhysicalScene> {
         PhysicalScene();
 
         void addSphere(CollisionSphere* toBeAdded, bool isStatic);
+        void removeSphere(CollisionSphere* toBeAdded, bool isStatic);
 
         void update();
 
@@ -21,6 +22,8 @@ class PhysicalScene : public KnownObject<PhysicalScene> {
 
         bool collide(CollisionSphere* first, CollisionSphere* second) const;
         void computeCollision(CollisionSphere* changing, CollisionSphere* untouched);
+        void addAtFreePosition(CollisionSphere* toBeAdded, std::vector<CollisionSphere*>& sphereVector);
+        void freePosition(CollisionSphere* toBeRemoved, std::vector<CollisionSphere*>& sphereVector);
 };
 
 # endif //PHYSICAL_SCENE_HPP

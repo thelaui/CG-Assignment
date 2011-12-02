@@ -36,6 +36,7 @@ Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 cons
     fuel.movementMultiplier = 0;
     fuel.texture = new Texture("data/textures/fuel.jpg");
     fuel.rate = AnimatedValue(AnimatedValue::Linear, 0.0, 0.0, 0.0);
+    fuel.colliding = false;
 
     fuel1_ = new Emitter(fuel, gloost::Vector3(), gloost::Vector3());
     fuel2_ = new Emitter(fuel, gloost::Vector3(), gloost::Vector3());
@@ -55,6 +56,7 @@ Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 cons
     cannon.movementMultiplier = 0;
     cannon.texture = new Texture("data/textures/bullet.jpg");
     cannon.rate = AnimatedValue(AnimatedValue::Linear, 10.0, 10.0, 0.0);
+    cannon.colliding = true;
 
     cannon1_ = new Emitter(cannon, gloost::Vector3(), gloost::Vector3());
     cannon2_ = new Emitter(cannon, gloost::Vector3(), gloost::Vector3());
