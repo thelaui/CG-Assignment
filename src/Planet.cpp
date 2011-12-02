@@ -18,10 +18,17 @@ Planet::Planet(Object* object, Billboard* billboard, float radius, float rotatio
     rotationSpeed_(rotationSpeed),
     ownRotationSpeed_(ownRotationSpeed),
     orbit_(orbit),
-    collisionSphere_(NULL) {
+    collisionSphere_(NULL),
+    life_(radius*100),
+    alive_(true) {
 
     if (collidable)
         collisionSphere_= new CollisionSphere(gloost::Vector3(), radius *0.5f);
+}
+
+Planet::~Planet() {
+    if (collisionSphere_)
+        delete collisionSphere_;
 }
 
 void Planet::update(double frameTime) {
@@ -32,54 +39,63 @@ void Planet::update(double frameTime) {
 
     for(int i(0); i<satellites_.size(); ++i)
         satellites_[i]->update(frameTime);
+
+    if (collisionSphere_ && collisionSphere_->getCollisionCount() > life_) {
+        delete collisionSphere_;
+        collisionSphere_ = NULL;
+        alive_ = false;
+    }
 }
 
 void Planet::draw() const {
-    SpaceScene* scene(SpaceScene::pointer());
+    if (alive_) {
+        SpaceScene* scene(SpaceScene::pointer());
 
-    gloost::MatrixStack* transform(scene->getMatrixStack());
-    transform->push();
-
-        // apply transformations of this object
-        if (collisionSphere_)
-            transform->translate(collisionSphere_->getPosition());
-        else transform->translate(getTransform());
-
+        gloost::MatrixStack* transform(scene->getMatrixStack());
         transform->push();
 
-            transform->scale(radius_, radius_, radius_);
+            // apply transformations of this object
+            if (collisionSphere_)
+                transform->translate(collisionSphere_->getPosition());
+            else transform->translate(getTransform());
 
-            glUniform3f(scene->getAtmoColorUL(), object_->atmoR_, object_->atmoG_, object_->atmoB_);
+            transform->push();
 
-            // draw billboard
-            if (billboard_) {
-                billboard_->draw();
-            }
+                transform->scale(radius_, radius_, radius_);
 
-            transform->rotate(0.0, ownRotationSpeed_*glutGet(GLUT_ELAPSED_TIME)*0.00005, 0.0);
+                glUniform3f(scene->getAtmoColorUL(), object_->atmoR_, object_->atmoG_, object_->atmoB_);
 
-            scene->uploadTransform();
+                // draw billboard
+                if (billboard_) {
+                    billboard_->draw();
+                }
 
-            // draw sphere
-            if (object_) {
-                if (object_->diffuse_)   object_->diffuse_->bind(0);
-                else                     Texture::unbind(0);
+                transform->rotate(0.0, ownRotationSpeed_*glutGet(GLUT_ELAPSED_TIME)*0.00005, 0.0);
 
-                if (object_->normal_)    object_->normal_->bind(1);
-                else                     Texture::unbind(1);
+                scene->uploadTransform();
 
-                if (object_->specular_)  object_->specular_->bind(2);
-                else                     Texture::unbind(2);
+                // draw sphere
+                if (object_) {
+                    if (object_->diffuse_)   object_->diffuse_->bind(0);
+                    else                     Texture::unbind(0);
 
-                if (object_->emit_)      object_->emit_->bind(3);
-                else                     Texture::unbind(3);
+                    if (object_->normal_)    object_->normal_->bind(1);
+                    else                     Texture::unbind(1);
 
-                object_->mesh_->draw();
-            }
+                    if (object_->specular_)  object_->specular_->bind(2);
+                    else                     Texture::unbind(2);
+
+                    if (object_->emit_)      object_->emit_->bind(3);
+                    else                     Texture::unbind(3);
 
 
+                    object_->mesh_->draw();
+                }
+
+
+
+            transform->pop();
 
         transform->pop();
-
-    transform->pop();
+    }
 }

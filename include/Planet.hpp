@@ -37,7 +37,10 @@ class Planet: public SpaceObject {
         /// \param ownRotationspeed A factor indicating the speed of
         ///                         self rotation.
         ////////////////////////////////////////////////////////////
-        Planet(Object* object, Billboard* billboard, float radius, float rotationSpeed, float ownRotationSpeed, float orbit, bool collidable = true);
+        Planet(Object* object, Billboard* billboard, float radius, float rotationSpeed, float ownRotationSpeed, float orbit,
+               bool collidable = true);
+
+        ~Planet();
 
         ////////////////////////////////////////////////////////////
         /// \brief Updates this object.
@@ -63,6 +66,9 @@ class Planet: public SpaceObject {
 
         float rotationSpeed_, ownRotationSpeed_;
         float orbit_;
+
+        int  life_;
+        bool alive_;
 };
 
 # endif //PLANET_HPP
