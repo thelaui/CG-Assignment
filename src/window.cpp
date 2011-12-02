@@ -213,6 +213,8 @@ void init(int width, int height, int argc, char* argv[]) throw (std::string) {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+
     physicalScene_ = new PhysicalScene();
 
     Texture* billboardTex = new Texture("data/textures/helpText.jpg");

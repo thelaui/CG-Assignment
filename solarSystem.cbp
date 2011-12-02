@@ -37,17 +37,17 @@
 		<Compiler>
 			<Add option="-std=c++0x" />
 			<Add directory="." />
-			<Add directory="../../src" />
-			<Add directory="../../contrib/gloostmath/src" />
-			<Add directory="../../include" />
+			<Add directory="gloost/src" />
+			<Add directory="gloost/contrib/gloostmath/src" />
+			<Add directory="gloost/include" />
 		</Compiler>
 		<Linker>
 			<Add library="libgloostmath" />
 			<Add library="GLEW" />
 			<Add library="glut" />
 			<Add library="IL" />
-			<Add directory="../../contrib/gloostmath/bin" />
-			<Add directory="../../lib" />
+			<Add directory="gloost/contrib/gloostmath/bin" />
+			<Add directory="gloost/lib" />
 		</Linker>
 		<Unit filename="data/shaders/simpleFragmentShader.frag">
 			<Option virtualFolder="shaders/" />

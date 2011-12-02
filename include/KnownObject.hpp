@@ -1,14 +1,21 @@
 # ifndef KNOWN_OBJECT_HPP
 # define KNOWN_OBJECT_HPP
 
+# include <cstddef>
 # include <vector>
 
 template <typename T>
 
 class KnownObject {
     public:
-        KnownObject() {
+        KnownObject():
+            objectID_(existingObjects_.size()) {
+
             existingObjects_.push_back(reinterpret_cast<T*>(this));
+        }
+
+        ~KnownObject() {
+            existingObjects_[objectID_] = NULL;
         }
 
         static T* pointer(int index = existingObjects_.size()-1) {
@@ -16,6 +23,9 @@ class KnownObject {
                 return existingObjects_[index];
             return NULL;
         }
+
+    protected:
+        const int objectID_;
 
     private:
         static std::vector<T*> existingObjects_;
