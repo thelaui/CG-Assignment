@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="../src/BitMask.h" open="0" top="0" tabpos="0">
+		<Cursor position="2652" topLine="0" />
+	</File>
+	<File name="../src/BoundingBox.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="14561" topLine="602" />
+	</File>
+	<File name="../src/BoundingBox.h" open="0" top="0" tabpos="0">
+		<Cursor position="3111" topLine="5" />
+	</File>
+	<File name="../src/BoundingVolume.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="35" />
+	</File>
+	<File name="../src/BoundingVolume.h" open="0" top="0" tabpos="0">
+		<Cursor position="1964" topLine="62" />
+	</File>
+	<File name="../src/Material.h" open="0" top="0" tabpos="0">
+		<Cursor position="1091" topLine="11" />
+	</File>
+	<File name="../src/MatrixStack.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1271" topLine="28" />
+	</File>
+	<File name="../src/MatrixStack.h" open="0" top="0" tabpos="0">
+		<Cursor position="1613" topLine="59" />
+	</File>
+	<File name="../src/Mesh.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="17668" topLine="799" />
+	</File>
+	<File name="../src/Mesh.h" open="1" top="0" tabpos="1">
+		<Cursor position="11315" topLine="414" />
+	</File>
+	<File name="../src/ObjLoader.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5975" topLine="210" />
+	</File>
+	<File name="../src/ObjLoader.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="40" />
+	</File>
+	<File name="../src/gloostMath.h" open="0" top="0" tabpos="0">
+		<Cursor position="5571" topLine="323" />
+	</File>
+</CodeBlocks_layout_file>

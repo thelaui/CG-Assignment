@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////
+/// \file
+/// \brief A class which can load and render meshes.
+//
+// CG-Beleg 2, by Felix Lauer (90404) & Simon Schneegans (90405)
+////////////////////////////////////////////////////////////////////
+
+# ifndef MESH_HPP
+# define MESH_HPP
+
+# include <string>
+
+namespace gloost {
+    class Mesh;
+}
+
+////////////////////////////////////////////////////////////////////
+/// \brief A class representing mesh.
+///
+/// This class allows to load mesh data from a file and display the
+/// mesh in an OpenGL context.
+////////////////////////////////////////////////////////////////////
+class Mesh {
+    public:
+
+        ////////////////////////////////////////////////////////////
+        /// \brief Constructor.
+        ///
+        /// This constructs a new Mesh form a given file.
+        /// \param file The file which contains the mesh data
+        ////////////////////////////////////////////////////////////
+        Mesh(std::string const& file);
+
+        ////////////////////////////////////////////////////////////
+        /// \brief Destructor.
+        ///
+        /// This will delete all associated buffers
+        ////////////////////////////////////////////////////////////
+        ~Mesh();
+
+        ////////////////////////////////////////////////////////////
+        /// \brief Draw the Mesh.
+        ///
+        /// This will draw the Mesh to the current OpenGL context.
+        ////////////////////////////////////////////////////////////
+        void draw();
+
+    private:
+        unsigned bufferIds_[3];
+        gloost::Mesh* mesh_;
+};
+
+# endif //MESH_HPP
+
+
+

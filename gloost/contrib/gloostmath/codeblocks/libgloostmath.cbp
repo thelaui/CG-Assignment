@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="libgloostmath" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="..\bin\libgloostmath" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Debug\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="..\bin\libgloostmath" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Release\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-Wall" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="..\src" />
+			<Add directory="..\..\..\include" />
+		</Compiler>
+		<Unit filename="..\src\BitMask.cpp" />
+		<Unit filename="..\src\BitMask.h" />
+		<Unit filename="..\src\BoundingBox.cpp" />
+		<Unit filename="..\src\BoundingBox.h" />
+		<Unit filename="..\src\BoundingVolume.cpp" />
+		<Unit filename="..\src\BoundingVolume.h" />
+		<Unit filename="..\src\Dcs.cpp" />
+		<Unit filename="..\src\Dcs.h" />
+		<Unit filename="..\src\Frustum.cpp" />
+		<Unit filename="..\src\Frustum.h" />
+		<Unit filename="..\src\Material.cpp" />
+		<Unit filename="..\src\Material.h" />
+		<Unit filename="..\src\Matrix.cpp" />
+		<Unit filename="..\src\Matrix.h" />
+		<Unit filename="..\src\MatrixStack.cpp" />
+		<Unit filename="..\src\MatrixStack.h" />
+		<Unit filename="..\src\Mesh.cpp" />
+		<Unit filename="..\src\Mesh.h" />
+		<Unit filename="..\src\MeshLoader.cpp" />
+		<Unit filename="..\src\MeshLoader.h" />
+		<Unit filename="..\src\ObjLoader.cpp" />
+		<Unit filename="..\src\ObjLoader.h" />
+		<Unit filename="..\src\ObjMatFile.cpp" />
+		<Unit filename="..\src\ObjMatFile.h" />
+		<Unit filename="..\src\Plane.cpp" />
+		<Unit filename="..\src\Plane.h" />
+		<Unit filename="..\src\Point3.cpp" />
+		<Unit filename="..\src\Point3.h" />
+		<Unit filename="..\src\Quaternion.cpp" />
+		<Unit filename="..\src\Quaternion.h" />
+		<Unit filename="..\src\Ray.cpp" />
+		<Unit filename="..\src\Ray.h" />
+		<Unit filename="..\src\SharedResource.cpp" />
+		<Unit filename="..\src\SharedResource.h" />
+		<Unit filename="..\src\UniformTypes.cpp" />
+		<Unit filename="..\src\UniformTypes.h" />
+		<Unit filename="..\src\Vector2.cpp" />
+		<Unit filename="..\src\Vector2.h" />
+		<Unit filename="..\src\Vector3.cpp" />
+		<Unit filename="..\src\Vector3.h" />
+		<Unit filename="..\src\gloostConfig.h" />
+		<Unit filename="..\src\gloostGlUtil.h" />
+		<Unit filename="..\src\gloostHelper.h" />
+		<Unit filename="..\src\gloostMath.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

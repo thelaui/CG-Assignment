@@ -1,0 +1,272 @@
+# depslib dependency file v1.0
+1305042868 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BitMask.cpp
+	<BitMask.h>
+	<string>
+	<iostream>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BitMask.h
+	<string>
+
+1319184882 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BoundingBox.cpp
+	<BoundingBox.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+
+1319184834 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BoundingBox.h
+	<BoundingVolume.h>
+	<Vector3.h>
+	<Matrix.h>
+	<Point3.h>
+	<Ray.h>
+
+1319184834 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BoundingVolume.h
+	<Matrix.h>
+	<Frustum.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Matrix.h
+	<gloostConfig.h>
+	<iostream>
+	<cstdlib>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/gloostConfig.h
+	<iostream>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Frustum.h
+	<Point3.h>
+	<Matrix.h>
+	<Plane.h>
+	<string>
+	<vector>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Point3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Plane.h
+	<Point3.h>
+	<Vector3.h>
+	<string>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Vector3.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+	<fstream>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Ray.h
+	<gloostConfig.h>
+	<Point3.h>
+	<Vector3.h>
+
+1305042868 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/BoundingVolume.cpp
+	<BoundingVolume.h>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Dcs.cpp
+	<Dcs.h>
+	<Quaternion.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Dcs.h
+	<Vector3.h>
+	<Matrix.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Quaternion.h
+	<Vector3.h>
+	<Point3.h>
+	<Matrix.h>
+
+1305042868 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Frustum.cpp
+	<Frustum.h>
+	<string>
+	<iostream>
+	<cstring>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Material.cpp
+	<Material.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Material.h
+	<UniformTypes.h>
+	<string>
+	<GL/glew.h>
+	<GL/glut.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/UniformTypes.h
+	<gloostHelper.h>
+	<Point3.h>
+	<Vector3.h>
+	<Matrix.h>
+	<iostream>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/gloostHelper.h
+	<string>
+	<sstream>
+	<cstring>
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+
+1314256674 /home/simon/Uni/5. Semester/Computergraphik/Gloost/include/GL/glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1318417866 /home/simon/Uni/5. Semester/Computergraphik/Gloost/include/GL/glut.h
+	"freeglut_std.h"
+
+1318417866 /home/simon/Uni/5. Semester/Computergraphik/Gloost/include/GL/freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Matrix.cpp
+	<cstring>
+	<Matrix.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/MatrixStack.cpp
+	<MatrixStack.h>
+	<gloostConfig.h>
+	<string>
+	<iostream>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/MatrixStack.h
+	<Matrix.h>
+	<Dcs.h>
+	<Vector3.h>
+	<string>
+	<stack>
+
+1319195418 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Mesh.cpp
+	<Mesh.h>
+	<Point3.h>
+	<Vector3.h>
+	<gloostMath.h>
+	<Matrix.h>
+	<GL/glew.h>
+	<GL/gl.h>
+	<string>
+	<iostream>
+	<vector>
+
+1319195144 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Mesh.h
+	<SharedResource.h>
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<BoundingBox.h>
+	<ObjMatFile.h>
+	<BitMask.h>
+	<string>
+	<vector>
+	<iostream>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/SharedResource.h
+	<string>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/ObjMatFile.h
+	<gloostConfig.h>
+	<gloostMath.h>
+	<Material.h>
+	<SharedResource.h>
+	<string>
+	<map>
+
+1318598062 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/gloostMath.h
+	<sstream>
+	<cmath>
+	<stdlib.h>
+	<UniformTypes.h>
+	<Vector3.h>
+	<Vector2.h>
+
+1318581880 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Vector2.h
+	<gloostConfig.h>
+	<cmath>
+	<iostream>
+
+1316114910 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/MeshLoader.cpp
+	<MeshLoader.h>
+	<Mesh.h>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/MeshLoader.h
+	<string.h>
+	<string>
+	<vector>
+
+1305046770 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/ObjLoader.cpp
+	<ObjLoader.h>
+	<Mesh.h>
+	<Point3.h>
+	<Vector3.h>
+	<Ray.h>
+	<gloostMath.h>
+	<gloostHelper.h>
+	<GL/glew.h>
+	<GL/gl.h>
+	<GL/glut.h>
+	<string>
+	<iostream>
+	<vector>
+
+1305042868 /home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/ObjLoader.h
+	<Vector3.h>
+	<Point3.h>
+	<Ray.h>
+	<MeshLoader.h>
+	<ObjMatFile.h>
+	<string>
+	<vector>
+
+1305042868 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/ObjMatFile.cpp
+	<ObjMatFile.h>
+	<string>
+	<iostream>
+
+1305042868 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Plane.cpp
+	<Plane.h>
+	<string>
+	<iostream>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Point3.cpp
+	<Point3.h>
+	<Vector3.h>
+	<cstring>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Quaternion.cpp
+	<Quaternion.h>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Ray.cpp
+	<Point3.h>
+	<Vector3.h>
+	<Ray.h>
+	<math.h>
+	<limits.h>
+
+1316689490 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/SharedResource.cpp
+	<SharedResource.h>
+	<string>
+	<iostream>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/UniformTypes.cpp
+	<UniformTypes.h>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Vector2.cpp
+	<Vector2.h>
+	<gloostMath.h>
+	<cstring>
+
+1318581880 source:/home/simon/Uni/5. Semester/Computergraphik/Gloost/contrib/gloostmath/src/Vector3.cpp
+	<Vector3.h>
+	<Point3.h>
+	<gloostMath.h>
+	<cstring>
+
