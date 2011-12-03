@@ -2,10 +2,11 @@
 
 # include "include/PhysicalScene.hpp"
 
-CollisionSphere::CollisionSphere(gloost::Vector3 const& position, float radius, bool isStatic):
+CollisionSphere::CollisionSphere(gloost::Vector3 const& position, float radius, bool isStatic, bool countCollision):
     position_(position),
     radius_(radius),
     isStatic_(isStatic),
+    countCollision_(countCollision),
     collisionCount_(0) {
         PhysicalScene::pointer()->addSphere(this, isStatic);
 }
@@ -24,6 +25,10 @@ float CollisionSphere::getRadius() const {
 
 int CollisionSphere::getCollisionCount() const {
     return collisionCount_;
+}
+
+bool CollisionSphere::isCollisionCounted() const {
+    return countCollision_;
 }
 
 void CollisionSphere::setPosition(gloost::Vector3 const& position) {

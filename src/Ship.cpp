@@ -13,7 +13,7 @@
 
 Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 const& position):
     object_(object),
-    collisionSphere_(new CollisionSphere(position, 0.05f, false)),
+    collisionSphere_(new CollisionSphere(position, 0.05f, false, false)),
     speed_(AnimatedValue::Out, 0, 0, 2, 0.5),
     rotX_(AnimatedValue::Linear, 0, 0, 0),
     rotY_(AnimatedValue::Linear, 0, 0, 0),

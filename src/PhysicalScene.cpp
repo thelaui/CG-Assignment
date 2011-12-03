@@ -35,8 +35,10 @@ void PhysicalScene::computeCollision(CollisionSphere* changing, CollisionSphere*
     gloost::Vector3 correctionDirection(changing->getPosition() - untouched->getPosition());
     correctionDirection.normalize();
 
-    changing->countCollision();
-    untouched->countCollision();
+    if (changing->isCollisionCounted() && untouched->isCollisionCounted()) {
+        changing->countCollision();
+        untouched->countCollision();
+    }
 
     changing->setPosition(untouched->getPosition() + correctionDirection*(changing->getRadius() + untouched->getRadius()));
 }

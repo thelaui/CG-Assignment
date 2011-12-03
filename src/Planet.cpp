@@ -20,7 +20,7 @@ Planet::Planet(Object* object, Billboard* billboard, float radius, float rotatio
     ownRotationSpeed_(ownRotationSpeed),
     orbit_(orbit),
     collisionSphere_(NULL),
-    life_(radius*10),
+    life_(radius*100),
     alive_(true),
     explosion_(NULL) {
 
@@ -28,12 +28,12 @@ Planet::Planet(Object* object, Billboard* billboard, float radius, float rotatio
         collisionSphere_= new CollisionSphere(gloost::Vector3(), radius *0.5f);
 
         ParticleTemplate explosion;
-        explosion.lifeTime = 40.0;
+        explosion.lifeTime = 0.1;
         explosion.r = AnimatedValue(AnimatedValue::Out, 1.0, 1.0, explosion.lifeTime);
         explosion.g = AnimatedValue(AnimatedValue::Out, 1.0, 0.0, explosion.lifeTime);
         explosion.b = AnimatedValue(AnimatedValue::Linear, 0.5, 0.0, explosion.lifeTime*0.1);
         explosion.a = AnimatedValue(AnimatedValue::Linear, 1.0, 0.0, explosion.lifeTime);
-        explosion.size = AnimatedValue(AnimatedValue::Linear, 1.5, 0.0, explosion.lifeTime);
+        explosion.size = AnimatedValue(AnimatedValue::Linear, 50, 0.0, explosion.lifeTime);
         explosion.movementInterpolation = AnimatedValue::Linear;
         explosion.movementMultiplier = 0;
         explosion.texture = new Texture("data/textures/fuel.jpg");
@@ -65,11 +65,11 @@ void Planet::update(double frameTime) {
         delete collisionSphere_;
         collisionSphere_ = NULL;
         alive_ = false;
-        explosion_->setRate(10, 3.f);
+        explosion_->setPosition(getTransform());
+        explosion_->setRate(100, 3.f);
     }
 
     if (!alive_) {
-        explosion_->setPosition(getTransform());
         explosion_->setDirection(gloost::Vector3(0.f, 0.1f, 0.f));
         explosion_->update(frameTime);
     }
