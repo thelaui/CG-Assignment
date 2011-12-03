@@ -5,6 +5,7 @@
 # include "include/Texture.hpp"
 # include "include/window.hpp"
 # include "include/CollisionSphere.hpp"
+# include "include/Emitter.hpp"
 
 # include <MatrixStack.h>
 # include <GL/glew.h>
@@ -19,16 +20,36 @@ Planet::Planet(Object* object, Billboard* billboard, float radius, float rotatio
     ownRotationSpeed_(ownRotationSpeed),
     orbit_(orbit),
     collisionSphere_(NULL),
-    life_(radius*100),
-    alive_(true) {
+    life_(radius*10),
+    alive_(true),
+    explosion_(NULL) {
 
-    if (collidable)
+    if (collidable) {
         collisionSphere_= new CollisionSphere(gloost::Vector3(), radius *0.5f);
+
+        ParticleTemplate explosion;
+        explosion.lifeTime = 40.0;
+        explosion.r = AnimatedValue(AnimatedValue::Out, 1.0, 1.0, explosion.lifeTime);
+        explosion.g = AnimatedValue(AnimatedValue::Out, 1.0, 0.0, explosion.lifeTime);
+        explosion.b = AnimatedValue(AnimatedValue::Linear, 0.5, 0.0, explosion.lifeTime*0.1);
+        explosion.a = AnimatedValue(AnimatedValue::Linear, 1.0, 0.0, explosion.lifeTime);
+        explosion.size = AnimatedValue(AnimatedValue::Linear, 1.5, 0.0, explosion.lifeTime);
+        explosion.movementInterpolation = AnimatedValue::Linear;
+        explosion.movementMultiplier = 0;
+        explosion.texture = new Texture("data/textures/fuel.jpg");
+        explosion.rate = AnimatedValue(AnimatedValue::Linear, 0.0, 0.0, 0.0);
+        explosion.colliding = false;
+
+        explosion_ = new Emitter(explosion, gloost::Vector3(), gloost::Vector3());
+    }
 }
 
 Planet::~Planet() {
     if (collisionSphere_)
         delete collisionSphere_;
+
+    if (explosion_)
+        delete explosion_;
 }
 
 void Planet::update(double frameTime) {
@@ -44,58 +65,63 @@ void Planet::update(double frameTime) {
         delete collisionSphere_;
         collisionSphere_ = NULL;
         alive_ = false;
+        explosion_->setRate(10, 3.f);
+    }
+
+    if (!alive_) {
+        explosion_->setPosition(getTransform());
+        explosion_->setDirection(gloost::Vector3(0.f, 0.1f, 0.f));
+        explosion_->update(frameTime);
     }
 }
 
 void Planet::draw() const {
-    if (alive_) {
-        SpaceScene* scene(SpaceScene::pointer());
+    SpaceScene* scene(SpaceScene::pointer());
 
-        gloost::MatrixStack* transform(scene->getMatrixStack());
+    gloost::MatrixStack* transform(scene->getMatrixStack());
+    transform->push();
+
+        // apply transformations of this object
+        if (collisionSphere_)
+            transform->translate(collisionSphere_->getPosition());
+        else transform->translate(getTransform());
+
         transform->push();
 
-            // apply transformations of this object
-            if (collisionSphere_)
-                transform->translate(collisionSphere_->getPosition());
-            else transform->translate(getTransform());
+            transform->scale(radius_, radius_, radius_);
 
-            transform->push();
+            glUniform3f(scene->getAtmoColorUL(), object_->atmoR_, object_->atmoG_, object_->atmoB_);
 
-                transform->scale(radius_, radius_, radius_);
+            // draw billboard
+            if (alive_ && billboard_) {
+                billboard_->draw();
+            }
 
-                glUniform3f(scene->getAtmoColorUL(), object_->atmoR_, object_->atmoG_, object_->atmoB_);
+            transform->rotate(0.0, ownRotationSpeed_*glutGet(GLUT_ELAPSED_TIME)*0.00005, 0.0);
 
-                // draw billboard
-                if (billboard_) {
-                    billboard_->draw();
-                }
+            scene->uploadTransform();
 
-                transform->rotate(0.0, ownRotationSpeed_*glutGet(GLUT_ELAPSED_TIME)*0.00005, 0.0);
+            // draw sphere
+            if (alive_ && object_) {
+                if (object_->diffuse_)   object_->diffuse_->bind(0);
+                else                     Texture::unbind(0);
 
-                scene->uploadTransform();
+                if (object_->normal_)    object_->normal_->bind(1);
+                else                     Texture::unbind(1);
 
-                // draw sphere
-                if (object_) {
-                    if (object_->diffuse_)   object_->diffuse_->bind(0);
-                    else                     Texture::unbind(0);
+                if (object_->specular_)  object_->specular_->bind(2);
+                else                     Texture::unbind(2);
 
-                    if (object_->normal_)    object_->normal_->bind(1);
-                    else                     Texture::unbind(1);
-
-                    if (object_->specular_)  object_->specular_->bind(2);
-                    else                     Texture::unbind(2);
-
-                    if (object_->emit_)      object_->emit_->bind(3);
-                    else                     Texture::unbind(3);
+                if (object_->emit_)      object_->emit_->bind(3);
+                else                     Texture::unbind(3);
 
 
-                    object_->mesh_->draw();
-                }
+                object_->mesh_->draw();
+            }
 
-
-
-            transform->pop();
+            else explosion_ -> draw();
 
         transform->pop();
-    }
+
+    transform->pop();
 }

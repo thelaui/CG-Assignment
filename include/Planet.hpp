@@ -12,6 +12,7 @@
 # include "include/SpaceObject.hpp"
 
 class CollisionSphere;
+class Emitter;
 
 ////////////////////////////////////////////////////////////////////
 /// \brief A class an object in space.
@@ -69,6 +70,8 @@ class Planet: public SpaceObject {
 
         int  life_;
         bool alive_;
+
+        Emitter *explosion_;
 };
 
 # endif //PLANET_HPP

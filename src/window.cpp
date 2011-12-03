@@ -2,6 +2,7 @@
 
 # include "include/SpaceScene.hpp"
 # include "include/Billboard.hpp"
+# include "include/Object.hpp"
 # include "include/Texture.hpp"
 # include "include/Ship.hpp"
 # include "include/PhysicalScene.hpp"

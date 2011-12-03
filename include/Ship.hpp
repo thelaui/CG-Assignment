@@ -9,12 +9,14 @@
 # ifndef SHIP_HPP
 # define SHIP_HPP
 
-# include "include/Object.hpp"
-# include "include/Emitter.hpp"
 # include "include/AnimatedValue.hpp"
-# include "include/SpaceScene.hpp"
 
+# include <gloostMath.h>
+# include <MatrixStack.h>
+
+class Object;
 class CollisionSphere;
+class Emitter;
 ////////////////////////////////////////////////////////////////////
 ///
 ////////////////////////////////////////////////////////////////////

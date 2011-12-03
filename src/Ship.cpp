@@ -1,8 +1,11 @@
 # include "include/Ship.hpp"
 
+# include "include/Object.hpp"
 # include "include/Texture.hpp"
 # include "include/window.hpp"
 # include "include/CollisionSphere.hpp"
+# include "include/Emitter.hpp"
+# include "include/SpaceScene.hpp"
 # include "include/PhysicalScene.hpp"
 
 # include <GL/glew.h>
