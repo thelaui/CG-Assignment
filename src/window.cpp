@@ -153,6 +153,12 @@ namespace {
         }
     }
 
+    void onClick(int button, int state, int x, int y) {
+        if (button == GLUT_LEFT_BUTTON && !showHelp_) {
+            ship_->shoot(state == GLUT_DOWN);
+        }
+    }
+
     void idleFunction(void) {
         glutPostRedisplay();
     }
@@ -188,6 +194,8 @@ namespace {
         glutSpecialUpFunc(onSpecialKeyUp);
         glutKeyboardFunc(onKey);
         glutPassiveMotionFunc(onMove);
+        glutMotionFunc(onMove);
+        glutMouseFunc(onClick);
     }
 }
 

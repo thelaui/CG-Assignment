@@ -58,7 +58,7 @@ Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 cons
     cannon.movementInterpolation = AnimatedValue::Linear;
     cannon.movementMultiplier = 0;
     cannon.texture = new Texture("data/textures/bullet.jpg");
-    cannon.rate = AnimatedValue(AnimatedValue::Linear, 10.0, 10.0, 0.0);
+    cannon.rate = AnimatedValue(AnimatedValue::Linear, 0.0, 0.0, 0.0);
     cannon.colliding = true;
 
     cannon1_ = new Emitter(cannon, gloost::Vector3(), gloost::Vector3());
@@ -187,6 +187,17 @@ void Ship::accelerate(bool accel) {
         fuel1_->setRate(0, 1.0);
         fuel2_->setRate(0, 1.0);
         fuel3_->setRate(0, 1.0);
+    }
+}
+
+void Ship::shoot(bool shoot) {
+    if (shoot) {
+        cannon1_->setRate(10, 0);
+        cannon2_->setRate(10, 0);
+    }
+    else {
+        cannon1_->setRate(0, 0);
+        cannon2_->setRate(0, 0);
     }
 }
 

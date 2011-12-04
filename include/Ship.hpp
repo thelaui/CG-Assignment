@@ -32,6 +32,8 @@ class Ship {
 
         void accelerate(bool accel);
 
+        void shoot(bool shoot);
+
         void rotateLeft(bool rotate);
         void rotateRight(bool rotate);
 
