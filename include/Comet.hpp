@@ -1,27 +1,22 @@
 ////////////////////////////////////////////////////////////////////
 /// \file
-/// \brief A SpaceObject can have any number of SpaceObjects
-///        floating in circles around.
+/// \brief
 //
 // CG-Beleg 2, by Felix Lauer (90404) & Simon Schneegans (90405)
 ////////////////////////////////////////////////////////////////////
 
-# ifndef PLANET_HPP
-# define PLANET_HPP
+# ifndef COMET_HPP
+# define COMET_HPP
 
-# include "include/SpaceObject.hpp"
+# include "include/Planet.hpp"
 
 class CollisionSphere;
 class Emitter;
 
 ////////////////////////////////////////////////////////////////////
-/// \brief A class an object in space.
 ///
-/// This can either be a sun, a planet, a moon or something else
-/// floating in space. It can have any number of satellites as
-/// children, which in turn can have other children again.
 ////////////////////////////////////////////////////////////////////
-class Planet: public SpaceObject {
+class Comet: public Planet {
     public:
 
         ////////////////////////////////////////////////////////////
@@ -38,41 +33,31 @@ class Planet: public SpaceObject {
         /// \param ownRotationspeed A factor indicating the speed of
         ///                         self rotation.
         ////////////////////////////////////////////////////////////
-        Planet(Object* object, Billboard* billboard, float radius, float rotationSpeed, float ownRotationSpeed, float orbit,
-               bool collidable = true);
+        Comet(Object* object, Billboard* billboard, float radius, float rotationSpeed,
+              float ownRotationSpeed, float orbit, gloost::Vector3 const& color);
 
-        virtual ~Planet();
+        virtual ~Comet();
 
         ////////////////////////////////////////////////////////////
         /// \brief Updates this object.
         ///
-        /// This updates the position of the Planet
+        /// This updates the position of the Comet
         ////////////////////////////////////////////////////////////
-        virtual void update(double frameTime);
+        void update(double frameTime);
 
         ////////////////////////////////////////////////////////////
         /// \brief Draw this object.
         ///
-        /// This draws the Planet and all of its children to
+        /// This draws the Comet and all of its children to
         /// the given SpaceScene.
         /// \param scene The scene to draw into.
         ////////////////////////////////////////////////////////////
-        virtual void draw() const;
+        void draw() const;
 
     private:
-        Object* object_;
-        CollisionSphere* collisionSphere_;
-
-        Billboard* billboard_;
-
-        float rotationSpeed_, ownRotationSpeed_;
-        float orbit_;
-
-        int  life_;
-        bool alive_;
-
-        Emitter *explosion_;
+        Emitter *trail_;
 };
 
 # endif //PLANET_HPP
+
 

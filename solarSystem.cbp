@@ -64,6 +64,9 @@
 		<Unit filename="include/CollisionSphere.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Comet.hpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Emitter.hpp">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -110,6 +113,9 @@
 			<Option virtualFolder="src/" />
 		</Unit>
 		<Unit filename="src/CollisionSphere.cpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/Comet.cpp">
 			<Option virtualFolder="src/" />
 		</Unit>
 		<Unit filename="src/Emitter.cpp">

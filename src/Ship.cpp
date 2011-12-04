@@ -50,11 +50,11 @@ Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 cons
     // ###### cannon setup #######
     ParticleTemplate cannon;
     cannon.lifeTime = 3.0;
-    cannon.r = AnimatedValue(AnimatedValue::Linear, 0.9, 0.9, cannon.lifeTime);
+    cannon.r = AnimatedValue(AnimatedValue::Linear, 1.0, 1.0, cannon.lifeTime);
     cannon.g = AnimatedValue(AnimatedValue::Linear, 0.8, 0.8, cannon.lifeTime);
     cannon.b = AnimatedValue(AnimatedValue::Linear, 0.7, 0.7, cannon.lifeTime);
-    cannon.a = AnimatedValue(AnimatedValue::Out, 1.0, 0.0, cannon.lifeTime);
-    cannon.size = AnimatedValue(AnimatedValue::Linear, 10.0, 10.0, cannon.lifeTime);
+    cannon.a = AnimatedValue(AnimatedValue::Linear, 1.0, 0.0, cannon.lifeTime);
+    cannon.size = AnimatedValue(AnimatedValue::Linear, 4.0, 4.0, cannon.lifeTime);
     cannon.movementInterpolation = AnimatedValue::Linear;
     cannon.movementMultiplier = 0;
     cannon.texture = new Texture("data/textures/bullet.jpg");
@@ -147,12 +147,12 @@ void Ship::update(double frameTime) {
         fuel3_->setDirection(direction);
     transform_.pop();
     transform_.push();
-        transform_.translate(0.036, -0.007 , -0.018);
+        transform_.translate(0.036, -0.007 , -0.1);
         cannon1_->setPosition(transform_.top().getTranslate());
         cannon1_->setDirection(1000*direction*(speed_.val()-1));
     transform_.pop();
     transform_.push();
-        transform_.translate(-0.036, -0.007 , -0.018);
+        transform_.translate(-0.036, -0.007 , -0.1);
         cannon2_->setPosition(transform_.top().getTranslate());
         cannon2_->setDirection(1000*direction*(speed_.val()-1));
     transform_.pop();
@@ -192,8 +192,8 @@ void Ship::accelerate(bool accel) {
 
 void Ship::shoot(bool shoot) {
     if (shoot) {
-        cannon1_->setRate(10, 0);
-        cannon2_->setRate(10, 0);
+        cannon1_->setRate(5, 0);
+        cannon2_->setRate(5, 0);
     }
     else {
         cannon1_->setRate(0, 0);

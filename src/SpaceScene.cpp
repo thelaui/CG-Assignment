@@ -1,6 +1,7 @@
 # include "include/SpaceScene.hpp"
 
 # include "include/Planet.hpp"
+# include "include/Comet.hpp"
 # include "include/window.hpp"
 # include "include/shader.hpp"
 # include "include/Texture.hpp"
@@ -180,9 +181,11 @@ void SpaceScene::setupSpace() {
 
     Mesh* sphere = new Mesh("data/objects/sphere.obj");
     Mesh* quad = new Mesh("data/objects/quad.obj");
+    Mesh* comet = new Mesh("data/objects/comet.obj");
 
     Billboard* billboard01 = new Billboard(quad, billboardTex01, 1.7);
     Billboard* billboard02 = new Billboard(quad, billboardTex02, 3.7);
+    Billboard* billboard03 = new Billboard(quad, billboardTex02, 3.5);
 
     Object* universeObject = new Object(sphere, 0, 0, 0, NULL, NULL, normal00, sky);
     Object* sunObject      = new Object(sphere, 1, 1, 1, NULL, NULL, normal00, glow00);
@@ -220,4 +223,15 @@ void SpaceScene::setupSpace() {
     sun->addSatellite(planet06);
         planet06->addSatellite(new Planet(planetObject04, billboard01, 0.7, 25, -17, 3.1));
         planet06->addSatellite(new Planet(planetObject04, billboard01, 2.0, -5, 7, 5.2));
+
+    Object* cometObject01 = new Object(comet, 0.8, 0.8, 0.8, diffuse04, specular04, normal04, NULL);
+
+    Comet* comet01 = new Comet(cometObject01, billboard03, 0.5, 5, 15.9, 18, gloost::Vector3(0, 0, 1));
+    Comet* comet02 = new Comet(cometObject01, billboard03, 0.5, -4, 5.9, 20, gloost::Vector3(0, 1, 0));
+    Comet* comet03 = new Comet(cometObject01, billboard03, 0.5, 3, 15.9, 30, gloost::Vector3(1, 0, 1));
+    Comet* comet04 = new Comet(cometObject01, billboard03, 0.5, -2, 15.9, 40, gloost::Vector3(0, 1, 1));
+    sun->addSatellite(comet01);
+    sun->addSatellite(comet02);
+    sun->addSatellite(comet03);
+    sun->addSatellite(comet04);
 }
