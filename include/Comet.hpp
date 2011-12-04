@@ -34,7 +34,7 @@ class Comet: public Planet {
         ///                         self rotation.
         ////////////////////////////////////////////////////////////
         Comet(Object* object, Billboard* billboard, float radius, float rotationSpeed,
-              float ownRotationSpeed, float orbit, gloost::Vector3 const& color);
+              float ownRotationSpeed, float orbit, gloost::Vector3 const& color, gloost::Vector3 const& rotationAxis);
 
         virtual ~Comet();
 

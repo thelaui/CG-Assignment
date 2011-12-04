@@ -5,6 +5,7 @@
 # include "include/Object.hpp"
 # include "include/Texture.hpp"
 # include "include/Ship.hpp"
+# include "include/Particle.hpp"
 # include "include/PhysicalScene.hpp"
 
 # include <GL/glew.h>
@@ -18,7 +19,7 @@ namespace window {
 namespace {
 
     int width_ (0), height_(0), frameCount_(0), time_(0);
-    double mouseX_(0.0), mouseY_(0.0);
+    double mouseX_(0.0), mouseY_(0.0), particleAmount_(1.0);
     bool fullScreen_(false), showHelp_(true);
     bool accel_(false);
     gloost::Vector2 mouseDrag_(0, 0);
@@ -31,7 +32,7 @@ namespace {
     void timerFunction(int value) {
         if(0 != value) {
             int fps = frameCount_ * 4;
-            glutSetWindowTitle( (gloost::toString(fps) + " fps").c_str());
+            glutSetWindowTitle( (gloost::toString(fps) + " fps | " + gloost::toString(Particle::count) + " Particles").c_str());
         }
 
         frameCount_ = 0;
@@ -143,6 +144,12 @@ namespace {
             case 'h':
                 showHelp_ = !showHelp_;
                 break;
+            case '+':
+                particleAmount_*=1.3;
+                break;
+            case '-':
+                particleAmount_/=1.3;
+                break;
         }
     }
 
@@ -250,6 +257,10 @@ int getWidth() {
 
 int getHeight() {
     return height_;
+}
+
+double getParticleAmount() {
+    return particleAmount_;
 }
 
 gloost::Matrix const& getCameraTransform() {

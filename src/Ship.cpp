@@ -192,8 +192,8 @@ void Ship::accelerate(bool accel) {
 
 void Ship::shoot(bool shoot) {
     if (shoot) {
-        cannon1_->setRate(5, 0);
-        cannon2_->setRate(5, 0);
+        cannon1_->setRate(15, 0);
+        cannon2_->setRate(15, 0);
     }
     else {
         cannon1_->setRate(0, 0);

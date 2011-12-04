@@ -12,13 +12,14 @@
 # include <GL/freeglut.h>
 
 Planet::Planet(Object* object, Billboard* billboard, float radius, float rotationSpeed,
-                         float ownRotationSpeed, float orbit, bool collidable):
+                         float ownRotationSpeed, float orbit, bool collidable, gloost::Vector3 const& rotationAxis):
     SpaceObject::SpaceObject(radius),
     object_(object),
     billboard_(billboard),
     rotationSpeed_(rotationSpeed),
     ownRotationSpeed_(ownRotationSpeed),
     orbit_(orbit),
+    rotationAxis_(rotationAxis),
     collisionSphere_(NULL),
     life_(radius*100),
     alive_(true),
@@ -53,7 +54,10 @@ Planet::~Planet() {
 }
 
 void Planet::update(double frameTime) {
-    position_ = gloost::Vector3(orbit_*std::cos(glutGet(GLUT_ELAPSED_TIME)*0.00005*rotationSpeed_), 0.0, orbit_*std::sin(glutGet(GLUT_ELAPSED_TIME)*0.00005*rotationSpeed_));
+    gloost::MatrixStack transform;
+    transform.rotate(glutGet(GLUT_ELAPSED_TIME)*0.00005*rotationSpeed_, rotationAxis_[0], rotationAxis_[1], rotationAxis_[2]);
+    transform.translate(0, 0, orbit_);
+    position_ = transform.top().getTranslate();
 
     if (collisionSphere_)
         collisionSphere_->setPosition(getTransform());

@@ -3,6 +3,8 @@
 # include "include/Emitter.hpp"
 # include "include/CollisionSphere.hpp"
 
+int Particle::count = 0;
+
 Particle::Particle(ParticleTemplate const& settings, gloost::Vector3 const& from, gloost::Vector3 const& direction, bool collidable):
     a_(settings.a),
     r_(settings.r),
@@ -17,11 +19,14 @@ Particle::Particle(ParticleTemplate const& settings, gloost::Vector3 const& from
 
     if (collidable)
         collisionSphere_ = new CollisionSphere(from, 0.001f, false);
+
+    ++count;
 }
 
 Particle::~Particle() {
     if (collisionSphere_)
         delete collisionSphere_;
+    --count;
 }
 
 void Particle::update(double frameTime) {

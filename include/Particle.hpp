@@ -37,6 +37,8 @@ class Particle {
 
         bool isDead() const;
 
+        static int count;
+
     private:
         AnimatedValue r_;
         AnimatedValue g_;

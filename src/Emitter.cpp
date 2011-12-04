@@ -2,6 +2,7 @@
 
 # include "include/SpaceScene.hpp"
 # include "include/Texture.hpp"
+# include "include/window.hpp"
 # include "include/Particle.hpp"
 
 # include <ObjLoader.h>
@@ -52,6 +53,7 @@ void Emitter::update(double frameTime) {
 
     for(std::list<Particle*>::iterator it = particles_.begin(); it != particles_.end(); ++it) {
         if ((*it)->isDead()) {
+            delete *it;
             it = particles_.erase(it);
             --it;
         }
@@ -72,14 +74,14 @@ void Emitter::update(double frameTime) {
             particles_.push_back(newPart);
         }
 
-        spawnTimer_ = 1.0/settings_.rate.val();
-        spawnDelay_ = 1.0/settings_.rate.val();
+        spawnTimer_ = 1.0/window::getParticleAmount()/settings_.rate.val();
+        spawnDelay_ = 1.0/window::getParticleAmount()/settings_.rate.val();
     }
 
     settings_.rate.update(frameTime);
-    if (spawnTimer_ > 1.0/settings_.rate.val()) {
-        spawnTimer_ = 1.0/settings_.rate.val();
-        spawnDelay_= 1.0/settings_.rate.val();
+    if (spawnTimer_ > 1.0/window::getParticleAmount()/settings_.rate.val()) {
+        spawnTimer_ = 1.0/window::getParticleAmount()/settings_.rate.val();
+        spawnDelay_= 1.0/window::getParticleAmount()/settings_.rate.val();
     }
 
     lastFramePosition_ = position_;

@@ -39,7 +39,7 @@ class Planet: public SpaceObject {
         ///                         self rotation.
         ////////////////////////////////////////////////////////////
         Planet(Object* object, Billboard* billboard, float radius, float rotationSpeed, float ownRotationSpeed, float orbit,
-               bool collidable = true);
+               bool collidable = true, gloost::Vector3 const& rotationAxis = gloost::Vector3(0, 1, 0));
 
         virtual ~Planet();
 
@@ -67,6 +67,7 @@ class Planet: public SpaceObject {
 
         float rotationSpeed_, ownRotationSpeed_;
         float orbit_;
+        gloost::Vector3 rotationAxis_;
 
         int  life_;
         bool alive_;

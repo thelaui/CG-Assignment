@@ -226,12 +226,16 @@ void SpaceScene::setupSpace() {
 
     Object* cometObject01 = new Object(comet, 0.8, 0.8, 0.8, diffuse04, specular04, normal04, NULL);
 
-    Comet* comet01 = new Comet(cometObject01, billboard03, 0.5, 5, 15.9, 18, gloost::Vector3(0, 0, 1));
-    Comet* comet02 = new Comet(cometObject01, billboard03, 0.5, -4, 5.9, 20, gloost::Vector3(0, 1, 0));
-    Comet* comet03 = new Comet(cometObject01, billboard03, 0.5, 3, 15.9, 30, gloost::Vector3(1, 0, 1));
-    Comet* comet04 = new Comet(cometObject01, billboard03, 0.5, -2, 15.9, 40, gloost::Vector3(0, 1, 1));
+    Comet* comet00 = new Comet(cometObject01, billboard03, 0.2, -2, 15.9, 9, gloost::Vector3(1, 0, 0), gloost::Vector3(1, 0, 0));
+    Comet* comet01 = new Comet(cometObject01, billboard03, 0.3, 5, 15.9, 18, gloost::Vector3(0, 0, 1), gloost::Vector3(0, 1, 1));
+    Comet* comet02 = new Comet(cometObject01, billboard03, 0.3, -4, 5.9, 20, gloost::Vector3(0, 1, 0), gloost::Vector3(0.2, 1, 0));
+    Comet* comet03 = new Comet(cometObject01, billboard03, 0.4, 3, 15.9, 30, gloost::Vector3(1, 0, 1), gloost::Vector3(0.2, 1, 0.1));
+    Comet* comet04 = new Comet(cometObject01, billboard03, 0.4, -2, 15.9, 40, gloost::Vector3(0, 1, 1), gloost::Vector3(0, 1, 0.1));
+    Comet* comet05 = new Comet(cometObject01, billboard03, 0.4, -2, 15.9, 60, gloost::Vector3(1, 1, 0), gloost::Vector3(0.3, 1, 0));
+    sun->addSatellite(comet00);
     sun->addSatellite(comet01);
     sun->addSatellite(comet02);
     sun->addSatellite(comet03);
     sun->addSatellite(comet04);
+    sun->addSatellite(comet05);
 }
