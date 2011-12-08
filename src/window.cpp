@@ -243,7 +243,7 @@ void init(int width, int height, int argc, char* argv[]) throw (std::string) {
     Texture* shipGlow = new Texture("data/textures/ship_glow.jpg");
     Mesh* shipMesh = new Mesh("data/objects/ship.obj");
     Object* shipObject = new Object(shipMesh, 1, 1, 1, shipDiffuse, shipSpecular, shipNormal, shipGlow);
-    ship_ = new Ship(shipObject, gloost::Vector3(0.35, M_PI*0.5, 0.0), gloost::Vector3(60.0, 5.0, 0.0));
+    ship_ = new Ship(shipObject, gloost::Vector3(0.3, 0.0, 0.0), gloost::Vector3(0.0, 5.0, 60.0));
 }
 
 void draw(SpaceScene* scene) {

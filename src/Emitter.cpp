@@ -10,13 +10,15 @@
 
 Emitter::Emitter(ParticleTemplate const& settings,
                  gloost::Vector3 const& position,
-                 gloost::Vector3 const& direction):
+                 gloost::Vector3 const& direction,
+                 gloost::Vector3 const& randomRotation):
 
     SpaceObject(0.f),
     position_(position),
     lastFramePosition_(position),
     direction_(direction),
     lastFrameDirection_(direction),
+    randomRotation_(randomRotation),
     settings_(settings),
     bufferIds_({0u}),
     spawnTimer_(0),
@@ -47,6 +49,10 @@ Emitter::~Emitter() {
     // clean up
     glDeleteBuffers(1, &bufferIds_[1]);
     glDeleteVertexArrays(1, &bufferIds_[0]);
+
+
+    for(std::list<Particle*>::iterator it = particles_.begin(); it != particles_.end(); ++it)
+        delete *it;
 }
 
 void Emitter::update(double frameTime) {
@@ -69,7 +75,18 @@ void Emitter::update(double frameTime) {
         gloost::Vector3 dirStep(direction_ - lastFrameDirection_);
 
         for (int i(0); i<spawnAmount; ++i) {
-            Particle* newPart = new Particle(settings_, position_ - 1.0*i/spawnAmount*posStep, direction_ - 1.0*i/spawnAmount*dirStep, settings_.colliding);
+            double theta(((1.0*std::rand())/RAND_MAX)*2.0*M_PI);
+            bool up((1.0*std::rand())/RAND_MAX > 0.5);
+
+            float r = sqrt((1.0*std::rand())/RAND_MAX);
+            float z = sqrt( 1.0f - r*r ) * (up ? 1 : -1);
+            gloost::Vector3 random( r * std::cos(theta), r * std::sin(theta), z );
+
+            gloost::Vector3 spawnDirection(direction_[0] + random[0]*randomRotation_[0],
+                                           direction_[1] + random[1]*randomRotation_[1],
+                                           direction_[2] + random[2]*randomRotation_[2]);
+
+            Particle* newPart = new Particle(settings_, position_ - 1.0*i/spawnAmount*posStep, spawnDirection - 1.0*i/spawnAmount*dirStep, settings_.colliding);
             newPart->update(frameTime*i/spawnAmount);
             particles_.push_back(newPart);
         }
@@ -139,4 +156,8 @@ void Emitter::setDirection(gloost::Vector3 const& direction) {
 
 void Emitter::setRate(double rate, double time) {
     settings_.rate.resetTarget(rate, time);
+}
+
+bool Emitter::isIdle() const {
+    return particles_.size() == 0 && settings_.rate.val() == 0.0;
 }

@@ -48,8 +48,7 @@ class Comet: public Planet {
         ////////////////////////////////////////////////////////////
         /// \brief Draw this object.
         ///
-        /// This draws the Comet and all of its children to
-        /// the given SpaceScene.
+        /// This draws the Comet the given SpaceScene.
         /// \param scene The scene to draw into.
         ////////////////////////////////////////////////////////////
         void draw() const;

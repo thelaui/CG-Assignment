@@ -4,6 +4,7 @@
 
 CollisionSphere::CollisionSphere(gloost::Vector3 const& position, float radius, bool isStatic, bool countCollision):
     position_(position),
+    collisionPositions_(),
     radius_(radius),
     isStatic_(isStatic),
     countCollision_(countCollision),
@@ -33,6 +34,18 @@ bool CollisionSphere::isCollisionCounted() const {
 
 void CollisionSphere::setPosition(gloost::Vector3 const& position) {
     position_=position;
+}
+
+void CollisionSphere::addCollisionPosition(gloost::Vector3 const& position) {
+    collisionPositions_.push_back(position);
+}
+
+std::list<gloost::Vector3> const& CollisionSphere::getCollisionPositions() const {
+    return collisionPositions_;
+}
+
+void CollisionSphere::clearCollisionPositions() {
+    collisionPositions_.clear();
 }
 
 void CollisionSphere::countCollision() {

@@ -38,6 +38,9 @@ void Comet::update(double frameTime) {
     trail_->setDirection(getTransform().normalized()*10);
 
     trail_->update(frameTime);
+
+    if (!alive_)
+        trail_->setRate(0.0, 0.0);
 }
 
 void Comet::draw() const {

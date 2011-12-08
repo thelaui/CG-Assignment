@@ -29,14 +29,12 @@ struct ParticleTemplate {
 
 class Particle;
 
-////////////////////////////////////////////////////////////////////
-///
-////////////////////////////////////////////////////////////////////
 class Emitter: public SpaceObject {
     public:
         Emitter(ParticleTemplate const& settings,
                 gloost::Vector3 const& position,
-                gloost::Vector3 const& rotation);
+                gloost::Vector3 const& rotation,
+                gloost::Vector3 const& randomRotation = gloost::Vector3(0, 0, 0));
 
         ~Emitter();
 
@@ -48,11 +46,14 @@ class Emitter: public SpaceObject {
         void setDirection(gloost::Vector3 const& direction);
         void setRate(double rate, double time);
 
+        bool isIdle() const;
+
     private:
         mutable std::list<Particle*> particles_;
 
         gloost::Vector3 position_, lastFramePosition_;
         gloost::Vector3 direction_, lastFrameDirection_;
+        gloost::Vector3 randomRotation_;
 
         ParticleTemplate settings_;
         float spawnTimer_, spawnDelay_;

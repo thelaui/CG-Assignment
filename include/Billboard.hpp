@@ -38,6 +38,13 @@ class Billboard {
         ////////////////////////////////////////////////////////////
         void draw();
 
+        ////////////////////////////////////////////////////////////
+        /// \brief Draws the Billboard.
+        ///
+        /// This draws the Billboard and makes sure it faces
+        /// the camera, being always in front of the camera.
+        /// \param scene The scene the Billboard is placed in.
+        ////////////////////////////////////////////////////////////
         void drawInCameraSpace();
 
     private:

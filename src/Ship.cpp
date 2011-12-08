@@ -49,7 +49,7 @@ Ship::Ship(Object* object, gloost::Vector3 const& rotation, gloost::Vector3 cons
 
     // ###### cannon setup #######
     ParticleTemplate cannon;
-    cannon.lifeTime = 3.0;
+    cannon.lifeTime = 2.0;
     cannon.r = AnimatedValue(AnimatedValue::Linear, 1.0, 1.0, cannon.lifeTime);
     cannon.g = AnimatedValue(AnimatedValue::Linear, 0.8, 0.8, cannon.lifeTime);
     cannon.b = AnimatedValue(AnimatedValue::Linear, 0.7, 0.7, cannon.lifeTime);
@@ -92,6 +92,9 @@ void Ship::draw() {
             transform->scale(0.1, 0.1, 0.1);
             scene->uploadTransform();
 
+            cannon1_->draw();
+            cannon2_->draw();
+
             if (object_->diffuse_)   object_->diffuse_->bind(0);
             else                     Texture::unbind(0);
 
@@ -103,9 +106,6 @@ void Ship::draw() {
 
             if (object_->emit_)      object_->emit_->bind(3);
             else                     Texture::unbind(3);
-
-            cannon1_->draw();
-            cannon2_->draw();
 
             object_->mesh_->draw();
 
@@ -149,12 +149,12 @@ void Ship::update(double frameTime) {
     transform_.push();
         transform_.translate(0.036, -0.007 , -0.1);
         cannon1_->setPosition(transform_.top().getTranslate());
-        cannon1_->setDirection(1000*direction*(speed_.val()-1));
+        cannon1_->setDirection(2000*direction*(speed_.val()-1));
     transform_.pop();
     transform_.push();
         transform_.translate(-0.036, -0.007 , -0.1);
         cannon2_->setPosition(transform_.top().getTranslate());
-        cannon2_->setDirection(1000*direction*(speed_.val()-1));
+        cannon2_->setDirection(2000*direction*(speed_.val()-1));
     transform_.pop();
 
     fuel1_->update(frameTime);

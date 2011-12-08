@@ -11,6 +11,8 @@
 
 # include "include/SpaceObject.hpp"
 
+# include <list>
+
 class CollisionSphere;
 class Emitter;
 
@@ -59,6 +61,9 @@ class Planet: public SpaceObject {
         ////////////////////////////////////////////////////////////
         virtual void draw() const;
 
+    protected:
+        bool alive_;
+
     private:
         Object* object_;
         CollisionSphere* collisionSphere_;
@@ -70,9 +75,9 @@ class Planet: public SpaceObject {
         gloost::Vector3 rotationAxis_;
 
         int  life_;
-        bool alive_;
 
-        Emitter *explosion_;
+        std::list<Emitter*> eruptions_;
+        Emitter *explosion_, *sparks_, *ring_;
 };
 
 # endif //PLANET_HPP

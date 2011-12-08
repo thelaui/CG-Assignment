@@ -15,6 +15,14 @@ void PhysicalScene::removeSphere(CollisionSphere* toBeRemoved, bool isStatic) {
 }
 
 void PhysicalScene::update() {
+    for (std::vector<CollisionSphere*>::iterator dynamicSphere(dynamicSpheres_.begin()); dynamicSphere != dynamicSpheres_.end(); ++dynamicSphere)
+        if (*dynamicSphere)
+            (*dynamicSphere)->clearCollisionPositions();
+
+     for (std::vector<CollisionSphere*>::iterator staticSphere(staticSpheres_.begin()); staticSphere != staticSpheres_.end(); ++staticSphere)
+        if (*staticSphere)
+            (*staticSphere)->clearCollisionPositions();
+
     for (std::vector<CollisionSphere*>::iterator dynamicSphere(dynamicSpheres_.begin()); dynamicSphere != dynamicSpheres_.end(); ++dynamicSphere) {
         if (*dynamicSphere) {
             for (std::vector<CollisionSphere*>::iterator staticSphere(staticSpheres_.begin()); staticSphere != staticSpheres_.end(); ++staticSphere) {
@@ -38,6 +46,7 @@ void PhysicalScene::computeCollision(CollisionSphere* changing, CollisionSphere*
     if (changing->isCollisionCounted() && untouched->isCollisionCounted()) {
         changing->countCollision();
         untouched->countCollision();
+        untouched->addCollisionPosition(untouched->getPosition() + correctionDirection*untouched->getRadius());
     }
 
     changing->setPosition(untouched->getPosition() + correctionDirection*(changing->getRadius() + untouched->getRadius()));

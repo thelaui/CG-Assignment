@@ -2,6 +2,7 @@
 # define COLLISION_SPHERE_HPP
 
 # include <gloostMath.h>
+# include <list>
 
 class CollisionSphere {
     public:
@@ -15,13 +16,18 @@ class CollisionSphere {
         bool                   isCollisionCounted() const;
 
         void setPosition(gloost::Vector3 const& position);
+        void addCollisionPosition(gloost::Vector3 const& position);
+        std::list<gloost::Vector3> const& getCollisionPositions() const;
+        void clearCollisionPositions();
+
         void countCollision();
 
     private:
-        gloost::Vector3 position_;
-        float           radius_;
-        bool            isStatic_;
-        bool            countCollision_;
+        gloost::Vector3            position_;
+        std::list<gloost::Vector3> collisionPositions_;
+        float                      radius_;
+        bool                       isStatic_;
+        bool                       countCollision_;
 
         int collisionCount_;
 };

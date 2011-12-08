@@ -201,16 +201,22 @@ void SpaceScene::setupSpace() {
     Planet* sun = new Planet(sunObject, billboard02, 4.0, 0.0, 2.1, 0.0);
 
     Planet* planet01 = new Planet(planetObject01, billboard01, 1.5, 0.5, 5.2, 15);
+    Planet* planet02 = new Planet(planetObject06, billboard01, 0.9, 3.5, 8.2, 10);
     Planet* planet03 = new Planet(planetObject03, billboard01, 2.5, -0.3, 3.7, 25);
     Planet* planet05 = new Planet(planetObject05, billboard01, 2.0, 0.5, 4.7, 35);
     Planet* planet06 = new Planet(planetObject06, billboard01, 3.5, 0.3, 5.7, 50);
     Planet* planet07 = new Planet(planetObject07, billboard01, 0.5, 4.5, 15.9, 7);
+    Planet* planet08 = new Planet(planetObject03, billboard01, 2.5, 0.5, 5.9, 60);
+    Planet* planet09 = new Planet(planetObject06, billboard01, 4.5, -0.55, 1.9, 70);
+    Planet* planet10 = new Planet(planetObject07, billboard01, 3.0, -0.3, 2.9, 80);
+    Planet* planet11 = new Planet(planetObject02, billboard01, 6.0, 0.2, 3.9, 90);
 
     Planet* moon00 = new Planet(planetObject04, billboard01, 0.5, -3.8, -8.7, 2.5);
 
     universe_->addSatellite(sun);
 
     sun->addSatellite(planet07);
+    sun->addSatellite(planet02);
 
     sun->addSatellite(planet01);
         planet01->addSatellite(moon00);
@@ -223,6 +229,11 @@ void SpaceScene::setupSpace() {
     sun->addSatellite(planet06);
         planet06->addSatellite(new Planet(planetObject04, billboard01, 0.7, 25, -17, 3.1));
         planet06->addSatellite(new Planet(planetObject04, billboard01, 2.0, -5, 7, 5.2));
+
+    sun->addSatellite(planet08);
+    sun->addSatellite(planet09);
+    sun->addSatellite(planet10);
+    sun->addSatellite(planet11);
 
     Object* cometObject01 = new Object(comet, 0.8, 0.8, 0.8, diffuse04, specular04, normal04, NULL);
 
